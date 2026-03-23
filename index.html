@@ -150,18 +150,35 @@
   .zodiac-detail p{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.8}
   .zodiac-stone-note{font-size:12px;color:var(--gold-light);margin-top:10px;font-style:italic}
 
-  /* Compatibility */
-  .compat-section{
-    background:rgba(255,255,255,0.03);border:1px solid rgba(124,158,247,0.15);
-    border-radius:16px;padding:20px;margin-bottom:20px;text-align:center;
+  /* Bracelet 3-stone layout */
+  .bracelet-card{
+    background:linear-gradient(145deg,rgba(21,29,59,0.9),rgba(11,16,38,0.95));
+    border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:28px 20px;
+    margin-bottom:20px;text-align:center;
   }
-  .compat-section h3{font-family:'Noto Serif JP',serif;font-size:15px;color:var(--accent);margin-bottom:14px}
-  .compat-row{display:flex;justify-content:center;gap:24px;margin-bottom:8px}
-  .compat-item{text-align:center}
-  .compat-item .stone-mini{font-size:32px}
-  .compat-item .compat-name{font-size:12px;color:var(--gold-light);margin-top:4px}
-  .compat-item .compat-pct{font-size:14px;color:#06C755;font-weight:700}
-  .compat-note{font-size:11px;color:rgba(255,255,255,0.4);margin-top:8px}
+  .bracelet-card h3{font-family:'Noto Serif JP',serif;font-size:16px;color:var(--gold);margin-bottom:6px;line-height:1.6}
+  .bracelet-card .bracelet-sub{font-size:13px;color:var(--accent);margin-bottom:20px}
+  .bracelet-stones-row{display:flex;justify-content:center;align-items:flex-end;gap:18px;margin-bottom:16px}
+  .bracelet-stone-item{text-align:center;flex:0 0 auto}
+  .bracelet-stone-item.main .bs-icon{font-size:52px;animation:glow 2s ease-in-out infinite}
+  .bracelet-stone-item.support .bs-icon{font-size:36px;opacity:0.85}
+  .bs-name{font-size:12px;color:var(--gold-light);margin-top:4px;font-weight:500}
+  .bs-role{font-size:10px;letter-spacing:2px;margin-top:2px;font-weight:700}
+  .bracelet-stone-item.main .bs-role{color:var(--gold)}
+  .bracelet-stone-item.support .bs-role{color:var(--accent);opacity:0.7}
+  .bracelet-msg{font-size:13px;color:var(--gold-light);margin-top:12px;line-height:1.6;font-style:italic}
+
+  /* Support stone detail rows */
+  .support-detail{
+    background:rgba(255,255,255,0.03);border:1px solid rgba(124,158,247,0.12);
+    border-radius:12px;padding:14px 16px;margin-bottom:10px;text-align:left;
+    display:flex;align-items:center;gap:12px;
+  }
+  .support-detail .sd-icon{font-size:28px;flex-shrink:0}
+  .support-detail .sd-info{flex:1}
+  .support-detail .sd-name{font-size:14px;color:var(--gold-light);font-weight:700}
+  .support-detail .sd-pct{font-size:13px;color:#06C755;font-weight:700;margin-left:6px}
+  .support-detail .sd-trait{font-size:12px;color:var(--accent);margin-top:2px}
 
   /* CTA */
   .cta-section{
@@ -392,17 +409,16 @@
   <!-- RESULT -->
   <div class="screen" id="screen-result">
     <div class="result-teaser" id="result-teaser"></div>
+    <div id="support-stones-detail"></div>
+    <div class="bracelet-card" id="bracelet-card"></div>
     <div class="zodiac-detail" id="zodiac-detail"></div>
-    <div class="compat-section" id="compat-section"></div>
     <div id="compare-result-section"></div>
     <div class="cta-section">
-      <h3>🔓 <span id="cta-name">あなた</span>専用の<br>星の鑑定書を受け取る</h3>
+      <h3>🔓 <span id="cta-name">あなた</span>専用の<br>開運ブレスレットを受け取る</h3>
       <ul class="cta-benefits">
-        <li>星からのメッセージ全文</li>
-        <li>あなたの星座×石の詳細な相性</li>
-        <li>最適なストーンの組み合わせ3選</li>
+        <li>あなたの星座×3石の詳細な相性鑑定</li>
+        <li>ブレスレットの最適な着用方法</li>
         <li>今月の星の流れと開運アクション</li>
-        <li>誕生月限定の特別鑑定</li>
         <li>🎁 今月の開運カレンダー（PDF）</li>
         <li>🔮 毎月届く星座別メッセージ</li>
       </ul>
@@ -415,7 +431,7 @@
       </div>
     </div>
     <div class="share-section">
-      <p>✨ 診断結果をシェアして相性の良い石タイプを見つけよう</p>
+      <p>✨ あなたのブレスレットをシェアしよう</p>
       <p class="share-sub">同じ石の人、相性の良い石の人が見つかるかも？</p>
       <div class="share-card-preview" id="share-card-preview"></div>
       <button class="save-card-btn" onclick="saveShareImage()">📷 結果画像を保存する</button>
@@ -935,16 +951,24 @@ function showResult() {
   const firstLine = msgLines[0] || '';
   const restLines = msgLines.slice(1).join('\n');
 
+  // Support stones from compat
+  const support1 = stones[stone.compat[0].key];
+  const support1Pct = stone.compat[0].pct;
+  const support2 = stones[stone.compat[1].key];
+  const support2Pct = stone.compat[1].pct;
+
   // Teaser
   document.getElementById('result-teaser').innerHTML = `
     <div class="result-stone-icon">${stone.icon}</div>
     <div class="result-zodiac-badge">${userZodiac.icon} ${userZodiac.name} × パワーストーン</div>
-    <div class="result-label">${displayName}の星が選んだ石</div>
-    <div class="result-name">${stone.name}</div>
-    <div class="result-name-en">${stone.nameEn}</div>
+    <div class="result-label">${displayName}の星が導く</div>
+    <div class="result-name">開運ブレスレット</div>
+    <div class="result-name-en" style="margin-bottom:20px">YOUR FORTUNE BRACELET</div>
+    <div style="text-align:left;background:rgba(255,255,255,0.03);border-radius:12px;padding:16px;margin-bottom:16px">
+      <div style="font-size:13px;color:var(--gold-light);margin-bottom:4px">メイン石: ${stone.name} ${stone.icon}</div>
+      <div style="font-size:12px;color:var(--accent);line-height:1.6;padding-left:12px">→ ${stone.traits.join('・')}</div>
+    </div>
     <div class="rarity-badge">✨ 全体の <strong>${stone.rarity}%</strong> だけが選ばれる希少な組み合わせ</div>
-    <div class="result-traits">${stone.traits.map(t=>`<span class="trait-tag">${t}</span>`).join('')}</div>
-    <div class="result-chakra">対応チャクラ：${stone.chakra}</div>
     <div class="message-preview">
       <div class="message-first-line">${firstLine}</div>
       <div class="message-blurred">${restLines.replace(/\n/g,'<br>')}</div>
@@ -954,6 +978,36 @@ function showResult() {
         <small>LINE追加で全文を読む ↓</small>
       </div>
     </div>
+  `;
+
+  // Support stone details
+  document.getElementById('support-stones-detail').innerHTML = `
+    <div class="support-detail">
+      <div class="sd-icon">${support1.icon}</div>
+      <div class="sd-info">
+        <div><span class="sd-name">サポート石①: ${support1.name}</span><span class="sd-pct">${support1Pct}%</span></div>
+        <div class="sd-trait">「${support1.traits[0]}」</div>
+      </div>
+    </div>
+    <div class="support-detail">
+      <div class="sd-icon">${support2.icon}</div>
+      <div class="sd-info">
+        <div><span class="sd-name">サポート石②: ${support2.name}</span><span class="sd-pct">${support2Pct}%</span></div>
+        <div class="sd-trait">「${support2.traits[0]}」</div>
+      </div>
+    </div>
+  `;
+
+  // Bracelet 3-stone card
+  document.getElementById('bracelet-card').innerHTML = `
+    <h3>💎 ${displayName}の開運ブレスレット構成</h3>
+    <div class="bracelet-sub">3石の最強構成</div>
+    <div class="bracelet-stones-row">
+      <div class="bracelet-stone-item support"><div class="bs-icon">${support1.icon}</div><div class="bs-name">${support1.name}</div><div class="bs-role">SUPPORT</div></div>
+      <div class="bracelet-stone-item main"><div class="bs-icon">${stone.icon}</div><div class="bs-name">${stone.name}</div><div class="bs-role">MAIN</div></div>
+      <div class="bracelet-stone-item support"><div class="bs-icon">${support2.icon}</div><div class="bs-name">${support2.name}</div><div class="bs-role">SUPPORT</div></div>
+    </div>
+    <div class="bracelet-msg">「この3石の組み合わせは${displayName}専用の最強構成です」</div>
   `;
 
   // CTA name
@@ -966,16 +1020,7 @@ function showResult() {
     <p class="zodiac-stone-note">守護星「${userZodiac.planet}」× ${stone.name} の組み合わせは<br>特に強いエネルギーを発揮します</p>
   `;
 
-  // Compatibility
-  const compatHtml = stone.compat.map(c => {
-    const cs = stones[c.key];
-    return `<div class="compat-item"><div class="stone-mini">${cs.icon}</div><div class="compat-name">${cs.name}</div><div class="compat-pct">${c.pct}%</div></div>`;
-  }).join('');
-  document.getElementById('compat-section').innerHTML = `
-    <h3>💫 相性の良い石タイプ</h3>
-    <div class="compat-row">${compatHtml}</div>
-    <div class="compat-note">この石タイプの人とシェアし合うと、お互いのエネルギーが高まります</div>
-  `;
+  // (Compatibility integrated into bracelet support stones above)
 
   // Check compare param
   checkCompareResult(maxKey, stone);
@@ -991,15 +1036,15 @@ function showResult() {
   document.getElementById('share-card-preview').innerHTML = `
     <div class="sc-zodiac">${userZodiac.icon} ${userZodiac.name}</div>
     <div class="sc-icon">${stone.icon}</div>
-    <div class="sc-label">星が導くパワーストーン診断</div>
+    <div class="sc-label">星が導く開運ブレスレット</div>
     <div class="sc-name">${stone.name}</div>
-    <div class="sc-rarity">✨ 全体の${stone.rarity}%の希少な組み合わせ ✨</div>
-    <div class="sc-traits">${stone.traits.join(' / ')}</div>
+    <div class="sc-rarity">✨ 3石の最強構成 ✨</div>
+    <div class="sc-traits">${stone.name} × ${support1.name} × ${support2.name}</div>
     <div class="sc-url">🌟 ${displayName}も診断してみて</div>
   `;
 
   // Share URLs
-  const shareText = `🌟 星が導くパワーストーン診断\n\n${userZodiac.icon} ${userZodiac.name}の${userName === 'あなた' ? '私' : userName}に\n星が選んだ石は「${stone.name}」${stone.icon}\n\n全体のわずか${stone.rarity}%の希少な組み合わせ✨\n${stone.traits.join('・')}\n\nあなたの星は何を選ぶ？👇`;
+  const shareText = `🌟 星が導く開運ブレスレット診断\n\n${userZodiac.icon} ${userZodiac.name}の${userName === 'あなた' ? '私' : userName}の\n開運ブレスレットは\n💎 ${stone.name} × ${support1.name} × ${support2.name}\n\n3石の最強構成✨\n\nあなたの星はどんなブレスレットを選ぶ？👇`;
   const shareUrl = window.location.href.split('?')[0];
   document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
   document.getElementById('share-line').href = `https://line.me/R/msg/text/?${encodeURIComponent(shareText+'\n'+shareUrl)}`;
@@ -1096,9 +1141,11 @@ function generateShareImage(stone) {
   }
   // Border
   ctx.strokeStyle='rgba(201,168,76,0.3)';ctx.lineWidth=2;ctx.strokeRect(40,40,1000,1000);
+  const s1 = stones[stone.compat[0].key];
+  const s2 = stones[stone.compat[1].key];
   // Title
   ctx.fillStyle='#7C9EF7';ctx.font='28px sans-serif';ctx.textAlign='center';
-  ctx.fillText('🌟 星が導くパワーストーン診断',540,120);
+  ctx.fillText('🌟 星が導く開運ブレスレット',540,120);
   // Name (if provided)
   if (displayName) {
     ctx.fillStyle='#E8D5A3';ctx.font='22px sans-serif';
@@ -1112,22 +1159,28 @@ function generateShareImage(stone) {
   ctx.beginPath();ctx.moveTo(340,230);ctx.lineTo(740,230);ctx.stroke();
   // Label
   ctx.fillStyle='#E8D5A3';ctx.font='22px sans-serif';
-  ctx.fillText(displayName ? displayName + '星が選んだ石' : 'あなたの星が選んだ石',540,290);
-  // Icon
-  ctx.font='120px serif';ctx.fillText(stone.icon,540,440);
-  // Name
-  ctx.fillStyle='#C9A84C';ctx.font='bold 52px serif';ctx.fillText(stone.name,540,530);
-  // EN
-  ctx.fillStyle='rgba(201,168,76,0.5)';ctx.font='20px sans-serif';ctx.fillText(stone.nameEn,540,565);
+  ctx.fillText(displayName ? displayName + '星が導く開運ブレスレット' : '星が導く開運ブレスレット',540,290);
+  // 3 stone icons
+  ctx.font='80px serif';
+  ctx.fillText(s1.icon,340,420);
+  ctx.font='110px serif';
+  ctx.fillText(stone.icon,540,430);
+  ctx.font='80px serif';
+  ctx.fillText(s2.icon,740,420);
+  // Labels
+  ctx.font='14px sans-serif';ctx.fillStyle='#7C9EF7';
+  ctx.fillText('SUPPORT',340,460);ctx.fillText('MAIN',540,470);ctx.fillText('SUPPORT',740,460);
+  // Stone names
+  ctx.fillStyle='#C9A84C';ctx.font='bold 42px serif';ctx.fillText(stone.name,540,540);
+  ctx.fillStyle='rgba(201,168,76,0.6)';ctx.font='22px sans-serif';
+  ctx.fillText(`× ${s1.name} × ${s2.name}`,540,580);
   // Rarity
-  ctx.fillStyle='#FFD700';ctx.font='bold 26px sans-serif';ctx.fillText(`✨ 全体の${stone.rarity}%の希少な組み合わせ ✨`,540,640);
-  // Traits
-  ctx.fillStyle='#7C9EF7';ctx.font='22px sans-serif';ctx.fillText(stone.traits.join('  ·  '),540,710);
+  ctx.fillStyle='#FFD700';ctx.font='bold 26px sans-serif';ctx.fillText('✨ 3石の最強構成 ✨',540,650);
   // Planet
   ctx.fillStyle='rgba(232,213,163,0.6)';ctx.font='20px sans-serif';
-  ctx.fillText(`守護星：${userZodiac.planet} × ${stone.name}`,540,780);
+  ctx.fillText(`守護星：${userZodiac.planet} × ${stone.name}`,540,720);
   // CTA
-  ctx.fillStyle='rgba(255,255,255,0.5)';ctx.font='22px sans-serif';ctx.fillText('あなたの星は何を選ぶ？ 🌟',540,900);
+  ctx.fillStyle='rgba(255,255,255,0.5)';ctx.font='22px sans-serif';ctx.fillText('あなたの星はどんなブレスレットを選ぶ？ 🌟',540,900);
   // Footer
   ctx.fillStyle='rgba(255,255,255,0.2)';ctx.font='16px sans-serif';ctx.fillText('星が導くパワーストーン診断',540,970);
 }
@@ -1143,7 +1196,7 @@ function saveShareImage() {
 function shareThreads() {
   const stone = stones[resultKey];
   const who = userName === 'あなた' ? '私' : userName;
-  const text = `🌟 星が導くパワーストーン診断やってみた\n\n${userZodiac.icon} ${userZodiac.name}の${who}に星が選んだ石は\n「${stone.name}」${stone.icon}\n\n全体のわずか${stone.rarity}%✨\n${stone.traits.join('・')}\n\n当たりすぎて怖い…\nあなたも試してみて👇`;
+  const text = `🌟 星が導く開運ブレスレット診断やってみた\n\n${userZodiac.icon} ${userZodiac.name}の${who}の開運ブレスレットは\n💎 ${stone.name} × ${stones[stone.compat[0].key].name} × ${stones[stone.compat[1].key].name}\n\n3石の最強構成✨\n\n当たりすぎて怖い…\nあなたも試してみて👇`;
   if (navigator.share) {
     navigator.share({text,url:window.location.href.split('?')[0]}).catch(()=>{});
   } else {
