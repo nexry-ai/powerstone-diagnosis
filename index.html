@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>星が導くパワーストーン診断 | あなたの星が選ぶ運命の石</title>
+<meta property="og:title" content="星が導くパワーストーン診断 ✨">
+<meta property="og:description" content="生年月日と7つの質問で、あなたの星が選ぶ運命のパワーストーンを診断。累計15,000人が体験。">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --gold:#C9A84C;--gold-light:#E8D5A3;--navy:#0B1026;--navy-light:#151D3B;
+    --text:#E8E0F0;--accent:#7C9EF7;--accent2:#B794F6;
+  }
+  body{
+    font-family:'Noto Sans JP',sans-serif;background:var(--navy);color:var(--text);
+    min-height:100vh;overflow-x:hidden;
+  }
+  body::before{
+    content:'';position:fixed;top:0;left:0;right:0;bottom:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(1px 1px at 5% 15%,rgba(255,255,255,0.9),transparent),
+      radial-gradient(1px 1px at 12% 45%,rgba(255,255,255,0.5),transparent),
+      radial-gradient(1.5px 1.5px at 18% 78%,rgba(124,158,247,0.7),transparent),
+      radial-gradient(1px 1px at 25% 25%,rgba(255,255,255,0.6),transparent),
+      radial-gradient(1px 1px at 32% 60%,rgba(255,255,255,0.4),transparent),
+      radial-gradient(1.5px 1.5px at 40% 10%,rgba(183,148,246,0.6),transparent),
+      radial-gradient(1px 1px at 48% 88%,rgba(255,255,255,0.7),transparent),
+      radial-gradient(1px 1px at 55% 35%,rgba(255,255,255,0.5),transparent),
+      radial-gradient(1px 1px at 62% 70%,rgba(255,255,255,0.4),transparent),
+      radial-gradient(1.5px 1.5px at 70% 20%,rgba(124,158,247,0.5),transparent),
+      radial-gradient(1px 1px at 78% 55%,rgba(255,255,255,0.8),transparent),
+      radial-gradient(1px 1px at 85% 80%,rgba(255,255,255,0.6),transparent),
+      radial-gradient(1px 1px at 92% 40%,rgba(255,255,255,0.5),transparent),
+      radial-gradient(2px 2px at 50% 50%,rgba(201,168,76,0.3),transparent),
+      radial-gradient(1px 1px at 95% 10%,rgba(255,255,255,0.7),transparent);
+  }
+  .container{max-width:480px;margin:0 auto;padding:20px;position:relative;z-index:1}
+  .header{text-align:center;padding:40px 0 20px}
+  .header-icon{font-size:52px;margin-bottom:12px;animation:float 3s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .header h1{font-family:'Noto Serif JP',serif;font-size:22px;color:var(--gold);margin-bottom:6px;letter-spacing:3px}
+  .header .subtitle{font-size:13px;color:var(--accent);letter-spacing:1px}
+  .header p{font-size:14px;color:var(--gold-light);opacity:0.8;line-height:1.8;margin-top:12px}
+  .divider{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:16px auto}
+  .screen{display:none;animation:fadeIn 0.5s ease}.screen.active{display:block}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+  /* Birthday input */
+  .birthday-section{text-align:center;margin-top:24px}
+  .birthday-label{font-family:'Noto Serif JP',serif;font-size:16px;color:var(--gold);margin-bottom:16px}
+  .birthday-inputs{display:flex;gap:8px;justify-content:center;margin-bottom:8px}
+  .birthday-inputs select,.birthday-inputs input{
+    background:rgba(255,255,255,0.06);border:1px solid rgba(124,158,247,0.3);
+    border-radius:10px;padding:12px;color:var(--text);font-size:15px;
+    font-family:'Noto Sans JP',sans-serif;appearance:none;text-align:center;
+    transition:border-color 0.3s;
+  }
+  .birthday-inputs select:focus,.birthday-inputs input:focus{outline:none;border-color:var(--accent)}
+  .birthday-inputs select{width:110px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237C9EF7' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+  .birthday-inputs select option{background:#151D3B;color:var(--text)}
+  .birthday-inputs input{width:80px}
+  .zodiac-display{font-size:13px;color:var(--accent);margin-top:8px;min-height:20px}
+  .start-btn{
+    display:inline-block;margin-top:20px;padding:14px 40px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    color:white;font-size:16px;font-weight:700;border-radius:50px;border:none;
+    cursor:pointer;transition:all 0.3s;box-shadow:0 4px 15px rgba(124,158,247,0.3);
+  }
+  .start-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(124,158,247,0.4)}
+  .start-btn:disabled{opacity:0.4;cursor:not-allowed;transform:none}
+
+  /* Progress */
+  .progress-bar{width:100%;height:3px;background:rgba(255,255,255,0.1);border-radius:3px;margin-bottom:30px;overflow:hidden}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--gold));border-radius:3px;transition:width 0.5s ease}
+  .progress-text{text-align:center;font-size:12px;color:var(--accent);opacity:0.6;margin-bottom:10px}
+
+  /* Questions */
+  .question-title{font-family:'Noto Serif JP',serif;font-size:18px;color:var(--gold);text-align:center;margin-bottom:8px;line-height:1.6;white-space:pre-line}
+  .question-sub{font-size:13px;text-align:center;color:rgba(255,255,255,0.5);margin-bottom:24px}
+  .options{display:flex;flex-direction:column;gap:12px}
+  .option{
+    background:rgba(255,255,255,0.04);border:1px solid rgba(124,158,247,0.15);
+    border-radius:12px;padding:16px 20px;cursor:pointer;transition:all 0.3s ease;
+    display:flex;align-items:center;gap:14px;
+  }
+  .option:hover{background:rgba(124,158,247,0.08);border-color:rgba(124,158,247,0.4);transform:translateX(4px)}
+  .option:active{transform:scale(0.98)}
+  .option-icon{font-size:24px;flex-shrink:0}
+  .option-text{font-size:15px;line-height:1.5}
+  .option-text small{display:block;font-size:12px;color:rgba(255,255,255,0.4);margin-top:2px}
+
+  /* Result */
+  .result-teaser{
+    background:linear-gradient(145deg,rgba(21,29,59,0.8),rgba(11,16,38,0.9));
+    border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:32px 24px;
+    text-align:center;margin-bottom:20px;
+  }
+  .result-stone-icon{font-size:64px;margin-bottom:12px;animation:glow 2s ease-in-out infinite}
+  @keyframes glow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.3) drop-shadow(0 0 20px rgba(124,158,247,0.5))}}
+  .result-zodiac-badge{
+    display:inline-block;background:rgba(124,158,247,0.15);border:1px solid rgba(124,158,247,0.3);
+    border-radius:20px;padding:4px 14px;font-size:12px;color:var(--accent);margin-bottom:12px;
+  }
+  .result-label{font-size:12px;color:var(--gold-light);letter-spacing:4px;margin-bottom:8px}
+  .result-name{font-family:'Noto Serif JP',serif;font-size:28px;color:var(--gold);margin-bottom:4px}
+  .result-name-en{font-size:13px;color:rgba(201,168,76,0.5);margin-bottom:16px;letter-spacing:2px}
+  .rarity-badge{
+    display:inline-block;background:linear-gradient(135deg,rgba(124,158,247,0.2),rgba(201,168,76,0.2));
+    border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:6px 16px;
+    font-size:13px;color:var(--gold);margin-bottom:20px;
+  }
+  .rarity-badge strong{color:#FFD700}
+  .result-traits{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:16px}
+  .trait-tag{background:rgba(124,158,247,0.15);border:1px solid rgba(124,158,247,0.3);border-radius:20px;padding:6px 14px;font-size:12px;color:var(--accent)}
+  .result-chakra{font-size:13px;color:var(--gold-light);opacity:0.7}
+  .message-preview{position:relative;margin-top:20px;padding:20px;background:rgba(255,255,255,0.02);border-radius:12px}
+  .message-blurred{font-size:14px;line-height:2;color:var(--text);filter:blur(6px);user-select:none;pointer-events:none}
+  .message-overlay{
+    position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;background:rgba(11,16,38,0.3);border-radius:12px;
+  }
+  .message-overlay p{font-family:'Noto Serif JP',serif;font-size:14px;color:var(--gold);margin-bottom:4px}
+  .message-overlay small{font-size:11px;color:rgba(255,255,255,0.5)}
+  .lock-icon{font-size:24px;margin-bottom:8px}
+
+  /* Zodiac detail */
+  .zodiac-detail{
+    background:rgba(124,158,247,0.05);border:1px solid rgba(124,158,247,0.15);
+    border-radius:16px;padding:20px;margin-bottom:20px;text-align:center;
+  }
+  .zodiac-detail h3{font-family:'Noto Serif JP',serif;font-size:15px;color:var(--accent);margin-bottom:12px}
+  .zodiac-detail p{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.8}
+  .zodiac-stone-note{font-size:12px;color:var(--gold-light);margin-top:10px;font-style:italic}
+
+  /* Compatibility */
+  .compat-section{
+    background:rgba(255,255,255,0.03);border:1px solid rgba(124,158,247,0.15);
+    border-radius:16px;padding:20px;margin-bottom:20px;text-align:center;
+  }
+  .compat-section h3{font-family:'Noto Serif JP',serif;font-size:15px;color:var(--accent);margin-bottom:14px}
+  .compat-row{display:flex;justify-content:center;gap:24px;margin-bottom:8px}
+  .compat-item{text-align:center}
+  .compat-item .stone-mini{font-size:32px}
+  .compat-item .compat-name{font-size:12px;color:var(--gold-light);margin-top:4px}
+  .compat-item .compat-pct{font-size:14px;color:#06C755;font-weight:700}
+  .compat-note{font-size:11px;color:rgba(255,255,255,0.4);margin-top:8px}
+
+  /* CTA */
+  .cta-section{
+    background:linear-gradient(145deg,rgba(124,158,247,0.08),rgba(201,168,76,0.08));
+    border:1px solid rgba(201,168,76,0.2);border-radius:16px;padding:24px;
+    text-align:center;margin-bottom:20px;
+  }
+  .cta-section h3{font-family:'Noto Serif JP',serif;font-size:16px;color:var(--gold);margin-bottom:12px;line-height:1.6}
+  .cta-benefits{text-align:left;margin:16px 0}
+  .cta-benefits li{font-size:13px;color:rgba(255,255,255,0.8);margin-bottom:8px;list-style:none;padding-left:24px;position:relative;line-height:1.6}
+  .cta-benefits li::before{content:'✓';position:absolute;left:0;color:#06C755;font-weight:700}
+  .cta-button{
+    display:inline-block;background:linear-gradient(135deg,#06C755,#04A847);color:white;
+    font-size:16px;font-weight:700;padding:16px 44px;border-radius:50px;text-decoration:none;
+    transition:all 0.3s ease;box-shadow:0 4px 15px rgba(6,199,85,0.3);animation:ctaPulse 2s ease-in-out infinite;
+  }
+  @keyframes ctaPulse{0%,100%{box-shadow:0 4px 15px rgba(6,199,85,0.3)}50%{box-shadow:0 4px 25px rgba(6,199,85,0.5)}}
+  .cta-button:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(6,199,85,0.4)}
+  .cta-sub{font-size:11px;color:rgba(255,255,255,0.4);margin-top:12px}
+  .cta-urgency{font-size:12px;color:#FF6B6B;margin-top:10px}
+
+  /* Share */
+  .share-section{text-align:center;margin-bottom:40px}
+  .share-section>p{font-size:14px;color:var(--gold-light);margin-bottom:6px}
+  .share-sub{font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:16px}
+  .share-card-preview{
+    background:linear-gradient(145deg,#0e1530,#0b1026);border:1px solid rgba(201,168,76,0.3);
+    border-radius:16px;padding:24px 20px;text-align:center;margin-bottom:12px;
+  }
+  .share-card-preview .sc-zodiac{font-size:11px;color:var(--accent);letter-spacing:2px;margin-bottom:4px}
+  .share-card-preview .sc-icon{font-size:40px;margin-bottom:8px}
+  .share-card-preview .sc-label{font-size:10px;color:var(--gold-light);letter-spacing:3px}
+  .share-card-preview .sc-name{font-family:'Noto Serif JP',serif;font-size:22px;color:var(--gold);margin:4px 0}
+  .share-card-preview .sc-rarity{font-size:12px;color:#FFD700;margin-bottom:12px}
+  .share-card-preview .sc-traits{font-size:11px;color:var(--accent);line-height:1.8}
+  .share-card-preview .sc-url{font-size:10px;color:rgba(255,255,255,0.3);margin-top:12px}
+  .save-card-btn{
+    display:inline-block;padding:10px 20px;background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:var(--text);
+    font-size:13px;cursor:pointer;transition:all 0.3s;margin-bottom:16px;
+  }
+  .save-card-btn:hover{background:rgba(255,255,255,0.12)}
+  .share-buttons{display:flex;gap:16px;justify-content:center;margin-bottom:16px}
+  .share-btn-label{text-align:center}
+  .share-btn-label span{display:block;font-size:10px;color:rgba(255,255,255,0.4);margin-top:4px}
+  .share-btn{
+    width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:20px;text-decoration:none;transition:transform 0.2s;cursor:pointer;color:white;
+  }
+  .share-btn:hover{transform:scale(1.1)}
+  .share-btn.twitter{background:#000;border:1px solid rgba(255,255,255,0.2)}
+  .share-btn.line-share{background:#06C755}
+  .share-btn.threads{background:linear-gradient(135deg,#333,#000);border:1px solid rgba(255,255,255,0.2)}
+  .share-btn.instagram{background:linear-gradient(135deg,#833AB4,#FD1D1D,#F77737)}
+  .retry-btn{
+    display:inline-block;margin-top:16px;padding:10px 24px;border:1px solid rgba(124,158,247,0.3);
+    border-radius:8px;color:var(--accent);font-size:13px;cursor:pointer;background:transparent;transition:all 0.3s;
+  }
+  .retry-btn:hover{background:rgba(124,158,247,0.1)}
+
+  /* Loading */
+  .loading{text-align:center;padding:60px 0}
+  .loading-orb{
+    width:60px;height:60px;border-radius:50%;
+    background:radial-gradient(circle,var(--accent),var(--accent2));
+    margin:0 auto 24px;animation:pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:0.6}50%{transform:scale(1.2);opacity:1}}
+  .loading p{font-family:'Noto Serif JP',serif;font-size:15px;color:var(--gold-light);animation:fadeInOut 2s ease-in-out infinite}
+  @keyframes fadeInOut{0%,100%{opacity:0.4}50%{opacity:1}}
+  .footer{text-align:center;padding:20px;font-size:11px;color:rgba(255,255,255,0.2)}
+  #shareCanvas{display:none}
+</style>
+</head>
+<body>
+
+<canvas id="shareCanvas" width="1080" height="1080"></canvas>
+
+<div class="container">
+
+  <!-- START -->
+  <div class="screen active" id="screen-start">
+    <div class="header">
+      <div class="header-icon">🌟</div>
+      <h1>星が導くパワーストーン診断</h1>
+      <p class="subtitle">— Your Star, Your Stone —</p>
+      <div class="divider"></div>
+      <p>あなたの星座と魂の状態から<br>運命のパワーストーンを見つけます</p>
+    </div>
+
+    <div class="birthday-section">
+      <div class="birthday-label">✨ まず、生年月日を教えてください</div>
+      <div class="birthday-inputs">
+        <select id="birth-year"></select>
+        <select id="birth-month"></select>
+        <select id="birth-day"></select>
+      </div>
+      <div class="zodiac-display" id="zodiac-display"></div>
+      <button class="start-btn" id="start-btn" onclick="startQuiz()" disabled>診断をはじめる ✨</button>
+    </div>
+
+    <p style="text-align:center;font-size:11px;color:rgba(255,255,255,0.3);margin-top:30px;">
+      累計 <span style="color:var(--accent);" id="total-count">15,382</span>人 が診断済み
+    </p>
+  </div>
+
+  <!-- QUESTION -->
+  <div class="screen" id="screen-question">
+    <div class="progress-text" id="progress-text"></div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="question-title" id="question-title"></div>
+    <div class="question-sub" id="question-sub"></div>
+    <div class="options" id="options"></div>
+  </div>
+
+  <!-- LOADING -->
+  <div class="screen" id="screen-loading">
+    <div class="loading">
+      <div class="loading-orb"></div>
+      <p id="loading-text">あなたの星を読み取っています...</p>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="screen" id="screen-result">
+    <div class="result-teaser" id="result-teaser"></div>
+    <div class="zodiac-detail" id="zodiac-detail"></div>
+    <div class="compat-section" id="compat-section"></div>
+    <div class="cta-section">
+      <h3>🔓 あなた専用の<br>星の鑑定書を受け取る</h3>
+      <ul class="cta-benefits">
+        <li>星からのメッセージ全文</li>
+        <li>あなたの星座×石の詳細な相性</li>
+        <li>最適なストーンの組み合わせ3選</li>
+        <li>今月の星の流れと開運アクション</li>
+        <li>誕生月限定の特別鑑定</li>
+      </ul>
+      <a href="#" class="cta-button" id="line-cta">📱 LINEで鑑定書を受け取る</a>
+      <p class="cta-sub">無料・30秒で完了・いつでもブロックOK</p>
+      <p class="cta-urgency">🔥 本日あと <strong id="slots-left">23</strong>名 限定</p>
+    </div>
+    <div class="share-section">
+      <p>✨ 診断結果をシェアして相性の良い石タイプを見つけよう</p>
+      <p class="share-sub">同じ石の人、相性の良い石の人が見つかるかも？</p>
+      <div class="share-card-preview" id="share-card-preview"></div>
+      <button class="save-card-btn" onclick="saveShareImage()">📷 結果画像を保存する</button>
+      <div class="share-buttons">
+        <div class="share-btn-label"><a class="share-btn twitter" id="share-x" target="_blank">𝕏</a><span>X</span></div>
+        <div class="share-btn-label"><a class="share-btn line-share" id="share-line" target="_blank">L</a><span>LINE</span></div>
+        <div class="share-btn-label"><a class="share-btn threads" onclick="shareThreads()">🔗</a><span>Threads</span></div>
+        <div class="share-btn-label"><a class="share-btn instagram" onclick="shareIG()">📸</a><span>ストーリー</span></div>
+      </div>
+      <button class="retry-btn" onclick="retry()">もう一度診断する</button>
+    </div>
+  </div>
+
+</div>
+<div class="footer">© 星が導くパワーストーン診断</div>
+
+<script>
+const LINE_URL = '#'; // TODO: LINE公式URL
+
+// --- Zodiac ---
+const zodiacSigns = [
+  { name:'やぎ座', icon:'♑', en:'Capricorn', element:'地', planet:'土星', dateRange:'12/22-1/19', stoneBonus:'power', desc:'責任感と忍耐の星。あなたの魂は着実に高みを目指しています。' },
+  { name:'みずがめ座', icon:'♒', en:'Aquarius', element:'風', planet:'天王星', dateRange:'1/20-2/18', stoneBonus:'intuition', desc:'革新と自由の星。あなたの魂は常識を超えた視点を持っています。' },
+  { name:'うお座', icon:'♓', en:'Pisces', element:'水', planet:'海王星', dateRange:'2/19-3/20', stoneBonus:'heal', desc:'共感と直感の星。あなたの魂は見えない世界と繋がっています。' },
+  { name:'おひつじ座', icon:'♈', en:'Aries', element:'火', planet:'火星', dateRange:'3/21-4/19', stoneBonus:'power', desc:'情熱と開拓の星。あなたの魂は新しい道を切り開く力を持っています。' },
+  { name:'おうし座', icon:'♉', en:'Taurus', element:'地', planet:'金星', dateRange:'4/20-5/20', stoneBonus:'wealth', desc:'豊穣と美の星。あなたの魂は真の豊かさを知っています。' },
+  { name:'ふたご座', icon:'♊', en:'Gemini', element:'風', planet:'水星', dateRange:'5/21-6/21', stoneBonus:'intuition', desc:'知性と好奇心の星。あなたの魂は二つの世界を行き来します。' },
+  { name:'かに座', icon:'♋', en:'Cancer', element:'水', planet:'月', dateRange:'6/22-7/22', stoneBonus:'love', desc:'母性と守護の星。あなたの魂は深い愛で人を包みます。' },
+  { name:'しし座', icon:'♌', en:'Leo', element:'火', planet:'太陽', dateRange:'7/23-8/22', stoneBonus:'power', desc:'輝きとカリスマの星。あなたの魂は人を導く光を持っています。' },
+  { name:'おとめ座', icon:'♍', en:'Virgo', element:'地', planet:'水星', dateRange:'8/23-9/22', stoneBonus:'heal', desc:'浄化と奉仕の星。あなたの魂は完璧な調和を求めています。' },
+  { name:'てんびん座', icon:'♎', en:'Libra', element:'風', planet:'金星', dateRange:'9/23-10/23', stoneBonus:'love', desc:'調和と美の星。あなたの魂はバランスの中に真実を見出します。' },
+  { name:'さそり座', icon:'♏', en:'Scorpio', element:'水', planet:'冥王星', dateRange:'10/24-11/22', stoneBonus:'transform', desc:'変容と再生の星。あなたの魂は死と再生を繰り返し、強くなります。' },
+  { name:'いて座', icon:'♐', en:'Sagittarius', element:'火', planet:'木星', dateRange:'11/23-12/21', stoneBonus:'wealth', desc:'拡大と冒険の星。あなたの魂は限界を超える旅を続けています。' },
+];
+
+function getZodiac(month, day) {
+  const dates = [[1,20],[2,19],[3,21],[4,20],[5,21],[6,22],[7,23],[8,23],[9,23],[10,24],[11,23],[12,22]];
+  let idx = 0;
+  for (let i = 0; i < 12; i++) {
+    if (month === dates[i][0] && day >= dates[i][1]) idx = i + 1;
+    else if (month === dates[i][0] + 1 && day < dates[(i+1)%12][1]) idx = i + 1;
+  }
+  // Simple fix
+  if (month===1 && day<=19) idx=0;
+  else if (month===1 && day>=20) idx=1;
+  else if (month===2 && day<=18) idx=1;
+  else if (month===2 && day>=19) idx=2;
+  else if (month===3 && day<=20) idx=2;
+  else if (month===3 && day>=21) idx=3;
+  else if (month===4 && day<=19) idx=3;
+  else if (month===4 && day>=20) idx=4;
+  else if (month===5 && day<=20) idx=4;
+  else if (month===5 && day>=21) idx=5;
+  else if (month===6 && day<=21) idx=5;
+  else if (month===6 && day>=22) idx=6;
+  else if (month===7 && day<=22) idx=6;
+  else if (month===7 && day>=23) idx=7;
+  else if (month===8 && day<=22) idx=7;
+  else if (month===8 && day>=23) idx=8;
+  else if (month===9 && day<=22) idx=8;
+  else if (month===9 && day>=23) idx=9;
+  else if (month===10 && day<=23) idx=9;
+  else if (month===10 && day>=24) idx=10;
+  else if (month===11 && day<=22) idx=10;
+  else if (month===11 && day>=23) idx=11;
+  else if (month===12 && day<=21) idx=11;
+  else if (month===12 && day>=22) idx=0;
+  return zodiacSigns[idx];
+}
+
+// --- Birthday selectors ---
+const yearSel = document.getElementById('birth-year');
+const monthSel = document.getElementById('birth-month');
+const daySel = document.getElementById('birth-day');
+
+yearSel.innerHTML = '<option value="">年</option>';
+for (let y = 2010; y >= 1940; y--) yearSel.innerHTML += `<option value="${y}">${y}年</option>`;
+monthSel.innerHTML = '<option value="">月</option>';
+for (let m = 1; m <= 12; m++) monthSel.innerHTML += `<option value="${m}">${m}月</option>`;
+daySel.innerHTML = '<option value="">日</option>';
+for (let d = 1; d <= 31; d++) daySel.innerHTML += `<option value="${d}">${d}日</option>`;
+
+let userZodiac = null;
+let userBirthMonth = null;
+
+function checkBirthday() {
+  const y = yearSel.value, m = monthSel.value, d = daySel.value;
+  const btn = document.getElementById('start-btn');
+  const disp = document.getElementById('zodiac-display');
+  if (y && m && d) {
+    userZodiac = getZodiac(parseInt(m), parseInt(d));
+    userBirthMonth = parseInt(m);
+    disp.innerHTML = `${userZodiac.icon} ${userZodiac.name}（${userZodiac.en}）— ${userZodiac.element}のエレメント`;
+    btn.disabled = false;
+  } else {
+    disp.innerHTML = '';
+    btn.disabled = true;
+  }
+}
+yearSel.onchange = monthSel.onchange = daySel.onchange = checkBirthday;
+
+// --- Questions ---
+const questions = [
+  {
+    title: "今、一番強く感じている\n感情はどれ？",
+    sub: "直感で選んでください",
+    options: [
+      { icon:"😔", text:"漠然とした不安", sub:"理由はわからないけど落ち着かない", scores:{protect:3,heal:2} },
+      { icon:"🔥", text:"変わりたいという焦り", sub:"今のままじゃダメだと感じる", scores:{transform:3,power:2} },
+      { icon:"💫", text:"新しい何かへの期待", sub:"もうすぐ何か起きそうな予感", scores:{intuition:3,love:1} },
+      { icon:"😌", text:"穏やかだけど物足りない", sub:"平和だけど刺激が欲しい", scores:{wealth:2,transform:2} }
+    ]
+  },
+  {
+    title: "夜、眠る前に\nよく考えることは？",
+    sub: "最近多いものを選んで",
+    options: [
+      { icon:"💰", text:"お金のこと", sub:"収入・将来の資金", scores:{wealth:3,power:1} },
+      { icon:"💕", text:"人間関係のこと", sub:"恋愛・家族・友人", scores:{love:3,heal:1} },
+      { icon:"🎯", text:"仕事や目標のこと", sub:"キャリア・夢・やりたいこと", scores:{power:3,transform:1} },
+      { icon:"🌙", text:"自分自身のこと", sub:"生き方・存在意義", scores:{intuition:3,heal:1} }
+    ]
+  },
+  {
+    title: "惹かれる色は？",
+    sub: "今の気分で",
+    options: [
+      { icon:"💜", text:"紫・ラベンダー", sub:"神秘・直感", scores:{intuition:3,heal:1} },
+      { icon:"💗", text:"ピンク・ローズ", sub:"愛・優しさ", scores:{love:3,heal:1} },
+      { icon:"💛", text:"金・イエロー", sub:"豊かさ・自信", scores:{wealth:3,power:1} },
+      { icon:"🖤", text:"黒・ダークブルー", sub:"守護・静寂", scores:{protect:3,transform:1} }
+    ]
+  },
+  {
+    title: "最近、不思議と\n目にするものは？",
+    sub: "シンクロニシティのサイン",
+    options: [
+      { icon:"🔢", text:"ゾロ目（111, 444, 777）", sub:"宇宙からのメッセージ", scores:{intuition:3,transform:2} },
+      { icon:"⭐", text:"流れ星や月が気になる", sub:"天体のサイン", scores:{power:3,protect:2} },
+      { icon:"🌈", text:"虹や光の輪", sub:"高次元からのギフト", scores:{love:2,heal:3} },
+      { icon:"🦋", text:"蝶や羽根", sub:"魂の変容のサイン", scores:{transform:3,intuition:1} }
+    ]
+  },
+  {
+    title: "今の自分に\n一番足りないと思うのは？",
+    sub: "正直に",
+    options: [
+      { icon:"🛡️", text:"自分を守る力", sub:"周りに振り回されがち", scores:{protect:3,power:1} },
+      { icon:"💎", text:"自分を信じる力", sub:"決断できない、迷う", scores:{power:3,intuition:1} },
+      { icon:"🌊", text:"流れに身を任せる力", sub:"コントロールしようとしすぎる", scores:{heal:3,love:1} },
+      { icon:"👁️", text:"本質を見抜く力", sub:"表面に惑わされやすい", scores:{intuition:3,protect:1} }
+    ]
+  },
+  {
+    title: "どんな「場所」に\n一番惹かれる？",
+    sub: "魂が安らぐ場所",
+    options: [
+      { icon:"🌌", text:"満天の星空の下", sub:"宇宙と繋がる感覚", scores:{intuition:3,transform:1} },
+      { icon:"🌊", text:"静かな海辺", sub:"波の音に癒される", scores:{heal:3,love:1} },
+      { icon:"⛰️", text:"山の頂上", sub:"達成感と見晴らし", scores:{power:3,wealth:1} },
+      { icon:"🏛️", text:"古い神社や寺院", sub:"神聖なエネルギー", scores:{protect:3,intuition:1} }
+    ]
+  },
+  {
+    title: "最後に。\n星に願うとしたら？",
+    sub: "一つだけ",
+    options: [
+      { icon:"✨", text:"魂の使命を知りたい", sub:"自分が何のために生まれたか", scores:{intuition:3,transform:2} },
+      { icon:"💰", text:"豊かさの流れに乗りたい", sub:"お金とチャンスの循環", scores:{wealth:3,power:2} },
+      { icon:"❤️", text:"深い愛と繋がりが欲しい", sub:"魂レベルのご縁", scores:{love:3,heal:2} },
+      { icon:"🛡️", text:"ネガティブから守られたい", sub:"心の平穏を保ちたい", scores:{protect:3,heal:2} }
+    ]
+  }
+];
+
+// --- Stones ---
+const stones = {
+  intuition: {
+    name:"ラピスラズリ", nameEn:"LAPIS LAZULI", icon:"💎", rarity:8.3,
+    traits:["第三の目覚醒","真実を見抜く力","宇宙との対話","直感力強化"],
+    chakra:"第6チャクラ（サードアイ）",
+    compat:[{key:"heal",pct:95},{key:"transform",pct:88}],
+    message:"あなたの星は、真実を見通す力を求めています。\n\nラピスラズリは古来「天空の石」と呼ばれ、星の導きを最も強く受ける石。直感が冴え渡り、嘘や表面的なものを見抜く力が授けられます。\n\n最近、不思議な偶然が続いていませんか？それは星があなたに気づいてほしいサイン。この石を持つことで、そのメッセージがよりクリアに届くようになります。"
+  },
+  love: {
+    name:"ローズクォーツ", nameEn:"ROSE QUARTZ", icon:"🌹", rarity:18.2,
+    traits:["無条件の愛","運命の人を引き寄せ","自己愛の回復","心の傷の癒し"],
+    chakra:"第4チャクラ（ハート）",
+    compat:[{key:"heal",pct:97},{key:"intuition",pct:85}],
+    message:"あなたの星は、深い愛と繋がりを求めています。\n\nローズクォーツは「愛の女神の石」。持つ者の心を優しく開き、魂レベルのご縁を引き寄せます。\n\nまず起きるのは「自分を許せるようになる」変化。自分を愛せた瞬間、周りの世界が驚くほど変わります。"
+  },
+  wealth: {
+    name:"シトリン", nameEn:"CITRINE", icon:"🔶", rarity:14.5,
+    traits:["金運急上昇","豊穣の波動","チャンスを掴む力","成功体質"],
+    chakra:"第3チャクラ（ソーラープレクサス）",
+    compat:[{key:"power",pct:92},{key:"transform",pct:84}],
+    message:"あなたの星は、豊かさの流れに乗る準備ができています。\n\nシトリンは「商人の石」と呼ばれ、持つ者に富と成功を引き寄せます。あなたの星の配置は、今まさに「金運の転換期」。\n\nこの石を持つことで、臨時収入や新しい収入の柱が見えてきます。"
+  },
+  protect: {
+    name:"オブシディアン", nameEn:"OBSIDIAN", icon:"🖤", rarity:11.7,
+    traits:["強力な魔除け","邪気浄化","宇宙の盾","グラウンディング"],
+    chakra:"第1チャクラ（ルート）",
+    compat:[{key:"intuition",pct:90},{key:"power",pct:86}],
+    message:"あなたの星は、強い守りを必要としています。\n\nオブシディアンは宇宙が「盾」として地球に送った石。邪気、嫉妬、悪意——あらゆる負のエネルギーを跳ね返します。\n\n最近、理由のない疲労感や、特定の人と会った後の消耗を感じていませんか？"
+  },
+  transform: {
+    name:"ラブラドライト", nameEn:"LABRADORITE", icon:"🌌", rarity:6.9,
+    traits:["魂の変容","覚醒の加速","創造力の爆発","次元上昇"],
+    chakra:"第6・第7チャクラ",
+    compat:[{key:"intuition",pct:94},{key:"protect",pct:82}],
+    message:"あなたの星は今、大きな変容の最中にあります。\n\nラブラドライトは「変容の石」。光の角度で色が変わるように、持つ者の意識を多次元に拡張します。\n\nあなたの星の配置に、大きな転機が近づいています。"
+  },
+  power: {
+    name:"タイガーアイ", nameEn:"TIGER'S EYE", icon:"🐯", rarity:15.8,
+    traits:["決断力強化","行動力覚醒","リーダーの資質","勝負運"],
+    chakra:"第3チャクラ（ソーラープレクサス）",
+    compat:[{key:"wealth",pct:93},{key:"protect",pct:87}],
+    message:"あなたの星は、強い意志と行動力を求めています。\n\nタイガーアイは「王の石」。古代の戦士や指導者が必ず身につけていた石です。\n\nあなたの星座が示すのは、本来「人を導く力」。その力を解放する時が来ています。"
+  },
+  heal: {
+    name:"アメジスト", nameEn:"AMETHYST", icon:"💜", rarity:24.6,
+    traits:["深い癒し","心の浄化","安眠効果","スピリチュアル覚醒"],
+    chakra:"第7チャクラ（クラウン）",
+    compat:[{key:"love",pct:96},{key:"intuition",pct:89}],
+    message:"あなたの星は、深い癒しと浄化を必要としています。\n\nアメジストは「魂の浄化石」。宇宙で最も神聖とされる紫の波動を宿しています。\n\n頑張りすぎていませんか？この石は、あなたの心を優しく包み込み、本来の光を取り戻させます。"
+  }
+};
+
+let currentQuestion = 0;
+let scores = {};
+let resultKey = '';
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const screen = document.getElementById(id);
+  screen.classList.add('active');
+  screen.style.animation = 'none';
+  screen.offsetHeight;
+  screen.style.animation = '';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function startQuiz() {
+  if (!userZodiac) return;
+  currentQuestion = 0;
+  scores = {intuition:0,love:0,wealth:0,protect:0,transform:0,power:0,heal:0};
+  // Add zodiac bonus
+  scores[userZodiac.stoneBonus] += 2;
+  showQuestion();
+}
+
+function showQuestion() {
+  const q = questions[currentQuestion];
+  showScreen('screen-question');
+  document.getElementById('progress-text').textContent = `${currentQuestion+1} / ${questions.length}`;
+  document.getElementById('progress-fill').style.width = `${((currentQuestion+1)/questions.length)*100}%`;
+  document.getElementById('question-title').textContent = q.title;
+  document.getElementById('question-sub').textContent = q.sub;
+  const optDiv = document.getElementById('options');
+  optDiv.innerHTML = '';
+  q.options.forEach(opt => {
+    const div = document.createElement('div');
+    div.className = 'option';
+    div.innerHTML = `<span class="option-icon">${opt.icon}</span><span class="option-text">${opt.text}<small>${opt.sub}</small></span>`;
+    div.onclick = () => selectOption(opt.scores);
+    optDiv.appendChild(div);
+  });
+}
+
+function selectOption(optScores) {
+  for (const [k,v] of Object.entries(optScores)) scores[k] = (scores[k]||0) + v;
+  currentQuestion++;
+  if (currentQuestion < questions.length) showQuestion();
+  else showLoading();
+}
+
+function showLoading() {
+  showScreen('screen-loading');
+  const msgs = [
+    "あなたの星を読み取っています...",
+    `${userZodiac.name}の星の配置を確認中...`,
+    "魂の波動を解析しています...",
+    `${userZodiac.planet}からのメッセージを受信中...`,
+    "運命の石を選んでいます..."
+  ];
+  let i = 0;
+  const interval = setInterval(() => { i++; if (i<msgs.length) document.getElementById('loading-text').textContent=msgs[i]; }, 900);
+  setTimeout(() => { clearInterval(interval); showResult(); }, 5000);
+}
+
+function showResult() {
+  let maxKey='intuition', maxVal=0;
+  for (const [k,v] of Object.entries(scores)) { if (v>maxVal) { maxVal=v; maxKey=k; } }
+  resultKey = maxKey;
+  const stone = stones[maxKey];
+  showScreen('screen-result');
+
+  // Teaser
+  document.getElementById('result-teaser').innerHTML = `
+    <div class="result-stone-icon">${stone.icon}</div>
+    <div class="result-zodiac-badge">${userZodiac.icon} ${userZodiac.name} × パワーストーン</div>
+    <div class="result-label">あなたの星が選んだ石</div>
+    <div class="result-name">${stone.name}</div>
+    <div class="result-name-en">${stone.nameEn}</div>
+    <div class="rarity-badge">✨ 全体の <strong>${stone.rarity}%</strong> だけが選ばれる希少な組み合わせ</div>
+    <div class="result-traits">${stone.traits.map(t=>`<span class="trait-tag">${t}</span>`).join('')}</div>
+    <div class="result-chakra">対応チャクラ：${stone.chakra}</div>
+    <div class="message-preview">
+      <div class="message-blurred">${stone.message.replace(/\n/g,'<br>')}</div>
+      <div class="message-overlay">
+        <div class="lock-icon">🔒</div>
+        <p>星からのメッセージ</p>
+        <small>LINE追加で全文を読む ↓</small>
+      </div>
+    </div>
+  `;
+
+  // Zodiac detail
+  document.getElementById('zodiac-detail').innerHTML = `
+    <h3>${userZodiac.icon} ${userZodiac.name}のあなたへ</h3>
+    <p>${userZodiac.desc}</p>
+    <p class="zodiac-stone-note">守護星「${userZodiac.planet}」× ${stone.name} の組み合わせは<br>特に強いエネルギーを発揮します</p>
+  `;
+
+  // Compatibility
+  const compatHtml = stone.compat.map(c => {
+    const cs = stones[c.key];
+    return `<div class="compat-item"><div class="stone-mini">${cs.icon}</div><div class="compat-name">${cs.name}</div><div class="compat-pct">${c.pct}%</div></div>`;
+  }).join('');
+  document.getElementById('compat-section').innerHTML = `
+    <h3>💫 相性の良い石タイプ</h3>
+    <div class="compat-row">${compatHtml}</div>
+    <div class="compat-note">この石タイプの人とシェアし合うと、お互いのエネルギーが高まります</div>
+  `;
+
+  // LINE CTA
+  document.getElementById('line-cta').href = `${LINE_URL}?result=${maxKey}&zodiac=${userZodiac.en.toLowerCase()}&month=${userBirthMonth}`;
+
+  // Slots
+  document.getElementById('slots-left').textContent = Math.floor(Math.random()*15)+10;
+
+  // Share card
+  document.getElementById('share-card-preview').innerHTML = `
+    <div class="sc-zodiac">${userZodiac.icon} ${userZodiac.name}</div>
+    <div class="sc-icon">${stone.icon}</div>
+    <div class="sc-label">星が導くパワーストーン診断</div>
+    <div class="sc-name">${stone.name}</div>
+    <div class="sc-rarity">✨ 全体の${stone.rarity}%の希少な組み合わせ ✨</div>
+    <div class="sc-traits">${stone.traits.join(' / ')}</div>
+    <div class="sc-url">🌟 あなたも診断してみて</div>
+  `;
+
+  // Share URLs
+  const shareText = `🌟 星が導くパワーストーン診断\n\n${userZodiac.icon} ${userZodiac.name}の私に\n星が選んだ石は「${stone.name}」${stone.icon}\n\n全体のわずか${stone.rarity}%の希少な組み合わせ✨\n${stone.traits.join('・')}\n\nあなたの星は何を選ぶ？👇`;
+  const shareUrl = window.location.href.split('?')[0];
+  document.getElementById('share-x').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+  document.getElementById('share-line').href = `https://line.me/R/msg/text/?${encodeURIComponent(shareText+'\n'+shareUrl)}`;
+
+  generateShareImage(stone);
+}
+
+function generateShareImage(stone) {
+  const canvas = document.getElementById('shareCanvas');
+  const ctx = canvas.getContext('2d');
+  // BG
+  const bg = ctx.createLinearGradient(0,0,1080,1080);
+  bg.addColorStop(0,'#0B1026'); bg.addColorStop(0.5,'#151D3B'); bg.addColorStop(1,'#0B1026');
+  ctx.fillStyle = bg; ctx.fillRect(0,0,1080,1080);
+  // Stars
+  for (let i=0;i<80;i++){
+    ctx.fillStyle=`rgba(255,255,255,${Math.random()*0.5+0.2})`;
+    ctx.beginPath();ctx.arc(Math.random()*1080,Math.random()*1080,Math.random()*1.5+0.5,0,Math.PI*2);ctx.fill();
+  }
+  // Border
+  ctx.strokeStyle='rgba(201,168,76,0.3)';ctx.lineWidth=2;ctx.strokeRect(40,40,1000,1000);
+  // Title
+  ctx.fillStyle='#7C9EF7';ctx.font='28px sans-serif';ctx.textAlign='center';
+  ctx.fillText('🌟 星が導くパワーストーン診断',540,120);
+  // Zodiac
+  ctx.fillStyle='#7C9EF7';ctx.font='24px sans-serif';
+  ctx.fillText(`${userZodiac.icon} ${userZodiac.name}（${userZodiac.en}）`,540,200);
+  // Divider
+  ctx.strokeStyle='rgba(201,168,76,0.4)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(340,230);ctx.lineTo(740,230);ctx.stroke();
+  // Label
+  ctx.fillStyle='#E8D5A3';ctx.font='22px sans-serif';ctx.fillText('あなたの星が選んだ石',540,290);
+  // Icon
+  ctx.font='120px serif';ctx.fillText(stone.icon,540,440);
+  // Name
+  ctx.fillStyle='#C9A84C';ctx.font='bold 52px serif';ctx.fillText(stone.name,540,530);
+  // EN
+  ctx.fillStyle='rgba(201,168,76,0.5)';ctx.font='20px sans-serif';ctx.fillText(stone.nameEn,540,565);
+  // Rarity
+  ctx.fillStyle='#FFD700';ctx.font='bold 26px sans-serif';ctx.fillText(`✨ 全体の${stone.rarity}%の希少な組み合わせ ✨`,540,640);
+  // Traits
+  ctx.fillStyle='#7C9EF7';ctx.font='22px sans-serif';ctx.fillText(stone.traits.join('  ·  '),540,710);
+  // Planet
+  ctx.fillStyle='rgba(232,213,163,0.6)';ctx.font='20px sans-serif';
+  ctx.fillText(`守護星：${userZodiac.planet} × ${stone.name}`,540,780);
+  // CTA
+  ctx.fillStyle='rgba(255,255,255,0.5)';ctx.font='22px sans-serif';ctx.fillText('あなたの星は何を選ぶ？ 🌟',540,900);
+  // Footer
+  ctx.fillStyle='rgba(255,255,255,0.2)';ctx.font='16px sans-serif';ctx.fillText('星が導くパワーストーン診断',540,970);
+}
+
+function saveShareImage() {
+  const canvas = document.getElementById('shareCanvas');
+  const link = document.createElement('a');
+  link.download = `星が導くパワーストーン診断_${userZodiac.name}_${stones[resultKey].name}.png`;
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+function shareThreads() {
+  const stone = stones[resultKey];
+  const text = `🌟 星が導くパワーストーン診断やってみた\n\n${userZodiac.icon} ${userZodiac.name}の私に星が選んだ石は\n「${stone.name}」${stone.icon}\n\n全体のわずか${stone.rarity}%✨\n${stone.traits.join('・')}\n\n当たりすぎて怖い…\nあなたも試してみて👇`;
+  if (navigator.share) {
+    navigator.share({text,url:window.location.href.split('?')[0]}).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(text+'\n'+window.location.href.split('?')[0]).then(()=>{
+      alert('テキストをコピーしました！\nThreadsに貼り付けてね');
+    });
+  }
+}
+
+function shareIG() { saveShareImage(); alert('画像を保存しました！\nInstagramストーリーに貼り付けてね'); }
+function retry() { showScreen('screen-start'); }
+
+// Fake counter
+const base=15382;
+const days=Math.floor((Date.now()-new Date('2025-01-01').getTime())/86400000);
+const el=document.getElementById('total-count');
+if(el) el.textContent=(base+days*9+Math.floor(Math.random()*5)).toLocaleString();
+</script>
+</body>
+</html>
