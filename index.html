@@ -522,14 +522,14 @@ scheduleToast();
 
 // ======== Zodiac ========
 const zodiacSigns = [
-  { name:'やぎ座', icon:'♑', en:'Capricorn', element:'地', planet:'土星', dateRange:'12/22-1/19', stoneBonus:'power', desc:'責任感と忍耐の星。あなたの魂は着実に高みを目指しています。' },
+  { name:'やぎ座', icon:'♑', en:'Capricorn', element:'地', planet:'土星', dateRange:'12/22-1/19', stoneBonus:'action', desc:'責任感と忍耐の星。あなたの魂は着実に高みを目指しています。' },
   { name:'みずがめ座', icon:'♒', en:'Aquarius', element:'風', planet:'天王星', dateRange:'1/20-2/18', stoneBonus:'intuition', desc:'革新と自由の星。あなたの魂は常識を超えた視点を持っています。' },
   { name:'うお座', icon:'♓', en:'Pisces', element:'水', planet:'海王星', dateRange:'2/19-3/20', stoneBonus:'heal', desc:'共感と直感の星。あなたの魂は見えない世界と繋がっています。' },
-  { name:'おひつじ座', icon:'♈', en:'Aries', element:'火', planet:'火星', dateRange:'3/21-4/19', stoneBonus:'power', desc:'情熱と開拓の星。あなたの魂は新しい道を切り開く力を持っています。' },
+  { name:'おひつじ座', icon:'♈', en:'Aries', element:'火', planet:'火星', dateRange:'3/21-4/19', stoneBonus:'action', desc:'情熱と開拓の星。あなたの魂は新しい道を切り開く力を持っています。' },
   { name:'おうし座', icon:'♉', en:'Taurus', element:'地', planet:'金星', dateRange:'4/20-5/20', stoneBonus:'wealth', desc:'豊穣と美の星。あなたの魂は真の豊かさを知っています。' },
   { name:'ふたご座', icon:'♊', en:'Gemini', element:'風', planet:'水星', dateRange:'5/21-6/21', stoneBonus:'intuition', desc:'知性と好奇心の星。あなたの魂は二つの世界を行き来します。' },
   { name:'かに座', icon:'♋', en:'Cancer', element:'水', planet:'月', dateRange:'6/22-7/22', stoneBonus:'love', desc:'母性と守護の星。あなたの魂は深い愛で人を包みます。' },
-  { name:'しし座', icon:'♌', en:'Leo', element:'火', planet:'太陽', dateRange:'7/23-8/22', stoneBonus:'power', desc:'輝きとカリスマの星。あなたの魂は人を導く光を持っています。' },
+  { name:'しし座', icon:'♌', en:'Leo', element:'火', planet:'太陽', dateRange:'7/23-8/22', stoneBonus:'action', desc:'輝きとカリスマの星。あなたの魂は人を導く光を持っています。' },
   { name:'おとめ座', icon:'♍', en:'Virgo', element:'地', planet:'水星', dateRange:'8/23-9/22', stoneBonus:'heal', desc:'浄化と奉仕の星。あなたの魂は完璧な調和を求めています。' },
   { name:'てんびん座', icon:'♎', en:'Libra', element:'風', planet:'金星', dateRange:'9/23-10/23', stoneBonus:'love', desc:'調和と美の星。あなたの魂はバランスの中に真実を見出します。' },
   { name:'さそり座', icon:'♏', en:'Scorpio', element:'水', planet:'冥王星', dateRange:'10/24-11/22', stoneBonus:'transform', desc:'変容と再生の星。あなたの魂は死と再生を繰り返し、強くなります。' },
@@ -604,7 +604,7 @@ const questions = [
     sub: "直感で選んでください",
     options: [
       { icon:"😔", text:"漠然とした不安", sub:"理由はわからないけど落ち着かない", scores:{protect:3,heal:2} },
-      { icon:"🔥", text:"変わりたいという焦り", sub:"今のままじゃダメだと感じる", scores:{transform:3,power:2} },
+      { icon:"🔥", text:"変わりたいという焦り", sub:"今のままじゃダメだと感じる", scores:{transform:3,action:2} },
       { icon:"💫", text:"新しい何かへの期待", sub:"もうすぐ何か起きそうな予感", scores:{intuition:3,love:1} },
       { icon:"😌", text:"穏やかだけど物足りない", sub:"平和だけど刺激が欲しい", scores:{wealth:2,transform:2} }
     ]
@@ -613,9 +613,9 @@ const questions = [
     title: "夜、眠る前に\nよく考えることは？",
     sub: "最近多いものを選んで",
     options: [
-      { icon:"💰", text:"お金のこと", sub:"収入・将来の資金", scores:{wealth:3,power:1} },
+      { icon:"💰", text:"お金のこと", sub:"収入・将来の資金", scores:{wealth:3,action:1} },
       { icon:"💕", text:"人間関係のこと", sub:"恋愛・家族・友人", scores:{love:3,heal:1} },
-      { icon:"🎯", text:"仕事や目標のこと", sub:"キャリア・夢・やりたいこと", scores:{power:3,transform:1} },
+      { icon:"🎯", text:"仕事や目標のこと", sub:"キャリア・夢・やりたいこと", scores:{action:3,transform:1} },
       { icon:"🌙", text:"自分自身のこと", sub:"生き方・存在意義", scores:{intuition:3,heal:1} }
     ]
   },
@@ -625,7 +625,7 @@ const questions = [
     options: [
       { icon:"💜", text:"紫・ラベンダー", sub:"神秘・直感", scores:{intuition:3,heal:1} },
       { icon:"💗", text:"ピンク・ローズ", sub:"愛・優しさ", scores:{love:3,heal:1} },
-      { icon:"💛", text:"金・イエロー", sub:"豊かさ・自信", scores:{wealth:3,power:1} },
+      { icon:"💛", text:"金・イエロー", sub:"豊かさ・自信", scores:{wealth:3,action:1} },
       { icon:"🖤", text:"黒・ダークブルー", sub:"守護・静寂", scores:{protect:3,transform:1} }
     ]
   },
@@ -634,7 +634,7 @@ const questions = [
     sub: "シンクロニシティのサイン",
     options: [
       { icon:"🔢", text:"ゾロ目（111, 444, 777）", sub:"宇宙からのメッセージ", scores:{intuition:3,transform:2} },
-      { icon:"⭐", text:"流れ星や月が気になる", sub:"天体のサイン", scores:{power:3,protect:2} },
+      { icon:"⭐", text:"流れ星や月が気になる", sub:"天体のサイン", scores:{action:3,protect:2} },
       { icon:"🌈", text:"虹や光の輪", sub:"高次元からのギフト", scores:{love:2,heal:3} },
       { icon:"🦋", text:"蝶や羽根", sub:"魂の変容のサイン", scores:{transform:3,intuition:1} }
     ]
@@ -643,8 +643,8 @@ const questions = [
     title: "今の自分に\n一番足りないと思うのは？",
     sub: "正直に",
     options: [
-      { icon:"🛡️", text:"自分を守る力", sub:"周りに振り回されがち", scores:{protect:3,power:1} },
-      { icon:"💎", text:"自分を信じる力", sub:"決断できない、迷う", scores:{power:3,intuition:1} },
+      { icon:"🛡️", text:"自分を守る力", sub:"周りに振り回されがち", scores:{protect:3,action:1} },
+      { icon:"💎", text:"自分を信じる力", sub:"決断できない、迷う", scores:{action:3,intuition:1} },
       { icon:"🌊", text:"流れに身を任せる力", sub:"コントロールしようとしすぎる", scores:{heal:3,love:1} },
       { icon:"👁️", text:"本質を見抜く力", sub:"表面に惑わされやすい", scores:{intuition:3,protect:1} }
     ]
@@ -655,7 +655,7 @@ const questions = [
     options: [
       { icon:"🌌", text:"満天の星空の下", sub:"宇宙と繋がる感覚", scores:{intuition:3,transform:1} },
       { icon:"🌊", text:"静かな海辺", sub:"波の音に癒される", scores:{heal:3,love:1} },
-      { icon:"⛰️", text:"山の頂上", sub:"達成感と見晴らし", scores:{power:3,wealth:1} },
+      { icon:"⛰️", text:"山の頂上", sub:"達成感と見晴らし", scores:{action:3,wealth:1} },
       { icon:"🏛️", text:"古い神社や寺院", sub:"神聖なエネルギー", scores:{protect:3,intuition:1} }
     ]
   },
@@ -664,7 +664,7 @@ const questions = [
     sub: "一つだけ",
     options: [
       { icon:"✨", text:"魂の使命を知りたい", sub:"自分が何のために生まれたか", scores:{intuition:3,transform:2} },
-      { icon:"💰", text:"豊かさの流れに乗りたい", sub:"お金とチャンスの循環", scores:{wealth:3,power:2} },
+      { icon:"💰", text:"豊かさの流れに乗りたい", sub:"お金とチャンスの循環", scores:{wealth:3,action:2} },
       { icon:"❤️", text:"深い愛と繋がりが欲しい", sub:"魂レベルのご縁", scores:{love:3,heal:2} },
       { icon:"🛡️", text:"ネガティブから守られたい", sub:"心の平穏を保ちたい", scores:{protect:3,heal:2} }
     ]
@@ -677,50 +677,57 @@ const stones = {
     name:"ラピスラズリ", nameEn:"LAPIS LAZULI", icon:"💎", rarity:8.3,
     traits:["第三の目覚醒","真実を見抜く力","宇宙との対話","直感力強化"],
     chakra:"第6チャクラ（サードアイ）",
-    compat:[{key:"heal",pct:95},{key:"transform",pct:88}],
-    message:"あなたの星は、真実を見通す力を求めています。\n\nラピスラズリは古来「天空の石」と呼ばれ、星の導きを最も強く受ける石。直感が冴え渡り、嘘や表面的なものを見抜く力が授けられます。\n\n最近、不思議な偶然が続いていませんか？それは星があなたに気づいてほしいサイン。この石を持つことで、そのメッセージがよりクリアに届くようになります。"
+    compat:[{key:"heal",pct:94},{key:"transform",pct:88}],
+    price:"¥9,800",
+    message:"あなたの星は、真実を見通す力を求めています。\n\nラピスラズリは古代エジプトでツタンカーメンの棺に使われ、クレオパトラがアイシャドウの原料としたとも伝わる「天空の石」。\n\n持つ者の第三の目を開き、嘘や表面的なものを見抜く力を授けます。最近、不思議な偶然が続いていませんか？\n\nそれはこの石があなたを呼んでいるサインです。"
   },
   love: {
-    name:"ローズクォーツ", nameEn:"ROSE QUARTZ", icon:"🌹", rarity:18.2,
-    traits:["無条件の愛","運命の人を引き寄せ","自己愛の回復","心の傷の癒し"],
-    chakra:"第4チャクラ（ハート）",
-    compat:[{key:"heal",pct:97},{key:"intuition",pct:85}],
-    message:"あなたの星は、深い愛と繋がりを求めています。\n\nローズクォーツは「愛の女神の石」。持つ者の心を優しく開き、魂レベルのご縁を引き寄せます。\n\nまず起きるのは「自分を許せるようになる」変化。自分を愛せた瞬間、周りの世界が驚くほど変わります。"
+    name:"ラリマー", nameEn:"LARIMAR", icon:"🩵", rarity:4.2,
+    traits:["魂の愛の覚醒","運命の人を引き寄せ","心の傷の浄化","カリブ海の奇跡"],
+    chakra:"第4・第5チャクラ（ハート＆スロート）",
+    compat:[{key:"heal",pct:96},{key:"intuition",pct:87}],
+    price:"¥12,800",
+    message:"あなたの星は、深い愛と魂の繋がりを求めています。\n\nラリマーは世界でたった1箇所、カリブ海ドミニカ共和国の山奥でのみ採れる奇跡の石。三大ヒーリングストーンの一つです。\n\nこの石は持つ者の心を優しく開き、魂レベルのご縁を引き寄せます。まず起きるのは「自分を許せるようになる」変化。\n\n自分を愛せた瞬間、周りの世界が驚くほど変わります。"
   },
   wealth: {
-    name:"シトリン", nameEn:"CITRINE", icon:"🔶", rarity:14.5,
-    traits:["金運急上昇","豊穣の波動","チャンスを掴む力","成功体質"],
+    name:"ルチルクォーツ", nameEn:"RUTILATED QUARTZ", icon:"✨", rarity:6.8,
+    traits:["金運急上昇","事業成功","富の引き寄せ","経営者の石"],
     chakra:"第3チャクラ（ソーラープレクサス）",
-    compat:[{key:"power",pct:92},{key:"transform",pct:84}],
-    message:"あなたの星は、豊かさの流れに乗る準備ができています。\n\nシトリンは「商人の石」と呼ばれ、持つ者に富と成功を引き寄せます。あなたの星の配置は、今まさに「金運の転換期」。\n\nこの石を持つことで、臨時収入や新しい収入の柱が見えてきます。"
+    compat:[{key:"action",pct:93},{key:"transform",pct:85}],
+    price:"¥12,800",
+    message:"あなたの星は、豊かさの流れに乗る準備ができています。\n\nルチルクォーツは透明な水晶の中に金色の針（ルチル）が入った石。古来「金運最強の石」として経営者や投資家に愛されてきました。\n\n金の針1本1本が、あなたに富と成功を引き寄せるアンテナとなります。\n\nあなたの星の配置は今まさに「金運の転換期」。この石が、その流れを加速させます。"
   },
   protect: {
-    name:"オブシディアン", nameEn:"OBSIDIAN", icon:"🖤", rarity:11.7,
-    traits:["強力な魔除け","邪気浄化","宇宙の盾","グラウンディング"],
-    chakra:"第1チャクラ（ルート）",
-    compat:[{key:"intuition",pct:90},{key:"power",pct:86}],
-    message:"あなたの星は、強い守りを必要としています。\n\nオブシディアンは宇宙が「盾」として地球に送った石。邪気、嫉妬、悪意——あらゆる負のエネルギーを跳ね返します。\n\n最近、理由のない疲労感や、特定の人と会った後の消耗を感じていませんか？"
+    name:"翡翠", nameEn:"JADEITE", icon:"🟢", rarity:7.1,
+    traits:["最強の守護力","日本の国石","五徳の石","魔除け・厄除け"],
+    chakra:"第4チャクラ（ハート）",
+    compat:[{key:"intuition",pct:91},{key:"action",pct:86}],
+    price:"¥12,800",
+    message:"あなたの星は、強い守りと品格を必要としています。\n\n翡翠は日本の「国石」に認定された、東洋最高の守護石。中国では「金より価値がある」とされ、皇帝だけが身につけることを許された時代もありました。\n\n仁・義・礼・智・信の五徳を備えるこの石は、あなたをあらゆる邪気から守りながら、品格と人徳を高めます。\n\n最近、理由のない疲労感や、人混みでの消耗を感じていませんか？"
   },
   transform: {
     name:"ラブラドライト", nameEn:"LABRADORITE", icon:"🌌", rarity:6.9,
-    traits:["魂の変容","覚醒の加速","創造力の爆発","次元上昇"],
+    traits:["魂の変容","隠された可能性の覚醒","創造力の爆発","虹のオーラ"],
     chakra:"第6・第7チャクラ",
-    compat:[{key:"intuition",pct:94},{key:"protect",pct:82}],
-    message:"あなたの星は今、大きな変容の最中にあります。\n\nラブラドライトは「変容の石」。光の角度で色が変わるように、持つ者の意識を多次元に拡張します。\n\nあなたの星の配置に、大きな転機が近づいています。"
+    compat:[{key:"intuition",pct:94},{key:"protect",pct:83}],
+    price:"¥9,800",
+    message:"あなたの星は今、大きな変容の最中にあります。\n\nラブラドライトは一見地味な灰色の石。しかし光を当てた瞬間、虹色の閃光（ラブラドレッセンス）を放ちます。\n\nそれはまるで「あなたの中に隠された可能性」そのもの。まだ気づいていない才能や、新しい自分が目覚めようとしています。\n\nあなたの星の配置に、大きな転機が近づいています。"
   },
-  power: {
-    name:"タイガーアイ", nameEn:"TIGER'S EYE", icon:"🐯", rarity:15.8,
-    traits:["決断力強化","行動力覚醒","リーダーの資質","勝負運"],
-    chakra:"第3チャクラ（ソーラープレクサス）",
-    compat:[{key:"wealth",pct:93},{key:"protect",pct:87}],
-    message:"あなたの星は、強い意志と行動力を求めています。\n\nタイガーアイは「王の石」。古代の戦士や指導者が必ず身につけていた石です。\n\nあなたの星座が示すのは、本来「人を導く力」。その力を解放する時が来ています。"
+  action: {
+    name:"サンストーン", nameEn:"SUNSTONE", icon:"☀️", rarity:9.4,
+    traits:["決断力強化","行動力覚醒","太陽のリーダーシップ","自信回復"],
+    chakra:"第2・第3チャクラ",
+    compat:[{key:"wealth",pct:92},{key:"protect",pct:87}],
+    price:"¥9,800",
+    message:"あなたの星は、強い意志と行動力を求めています。\n\nサンストーンは「太陽の石」。古代ヴァイキングが大海原で方角を知るための羅針盤として使った伝説の石です。\n\n迷いを断ち切り、進むべき方向を照らす力を持つこの石は、あなたの中に眠るリーダーシップを呼び覚まします。\n\n「やるべきことはわかっている。あとは動くだけ」——その背中を、太陽の光が押してくれます。"
   },
   heal: {
-    name:"アメジスト", nameEn:"AMETHYST", icon:"💜", rarity:24.6,
-    traits:["深い癒し","心の浄化","安眠効果","スピリチュアル覚醒"],
+    name:"スギライト", nameEn:"SUGILITE", icon:"💜", rarity:3.7,
+    traits:["深い癒し","魂の浄化","三大ヒーリング","日本人が発見した奇跡の石"],
     chakra:"第7チャクラ（クラウン）",
-    compat:[{key:"love",pct:96},{key:"intuition",pct:89}],
-    message:"あなたの星は、深い癒しと浄化を必要としています。\n\nアメジストは「魂の浄化石」。宇宙で最も神聖とされる紫の波動を宿しています。\n\n頑張りすぎていませんか？この石は、あなたの心を優しく包み込み、本来の光を取り戻させます。"
+    compat:[{key:"love",pct:95},{key:"intuition",pct:89}],
+    price:"¥12,800",
+    message:"あなたの星は、深い癒しと魂の浄化を必要としています。\n\nスギライトは日本人の杉健一博士が発見した、三大ヒーリングストーンの一つ。世界でも産出量が極めて少ない希少石です。\n\n「20世紀に発見された最も重要な鉱物」と呼ばれるこの石の深い紫の波動は、疲れ切った魂を優しく包み込みます。\n\n頑張りすぎていませんか？この石が、あなたの本来の光を取り戻させてくれます。"
   }
 };
 
@@ -767,7 +774,7 @@ function startQuiz() {
   if (!userZodiac) return;
   userName = document.getElementById('nickname-input').value.trim() || 'あなた';
   currentQuestion = 0;
-  scores = {intuition:0,love:0,wealth:0,protect:0,transform:0,power:0,heal:0};
+  scores = {intuition:0,love:0,wealth:0,protect:0,transform:0,action:0,heal:0};
   scores[userZodiac.stoneBonus] += 2;
   showQuestion();
 }
