@@ -110,6 +110,10 @@
     border:1px solid rgba(201,168,76,0.3);border-radius:20px;padding:32px 24px;
     text-align:center;margin-bottom:20px;
   }
+  
+  .stone-photo{width:180px;height:180px;border-radius:50%;object-fit:cover;border:3px solid rgba(124,158,247,0.3);box-shadow:0 0 20px rgba(124,158,247,0.2);margin:0 auto 8px;display:block}
+  .stone-photo-small{width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid rgba(124,158,247,0.2);box-shadow:0 0 10px rgba(124,158,247,0.15)}
+
   .result-stone-icon{font-size:64px;margin-bottom:12px;animation:glow 2s ease-in-out infinite}
   @keyframes glow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.3) drop-shadow(0 0 20px rgba(124,158,247,0.5))}}
   .result-zodiac-badge{
@@ -680,7 +684,7 @@ const questions = [
     title: "惹かれる色は？",
     sub: "今の気分で",
     options: [
-      { icon:"💜", text:"紫・ラベンダー", sub:"神秘・直感", scores:{intuition:3,heal:1} },
+      { icon:"💜",image:'images/sugilite.jpg', text:"紫・ラベンダー", sub:"神秘・直感", scores:{intuition:3,heal:1} },
       { icon:"💗", text:"ピンク・ローズ", sub:"愛・優しさ", scores:{love:3,heal:1} },
       { icon:"💛", text:"金・イエロー", sub:"豊かさ・自信", scores:{wealth:3,action:1} },
       { icon:"🖤", text:"黒・ダークブルー", sub:"守護・静寂", scores:{protect:3,transform:1} }
@@ -701,7 +705,7 @@ const questions = [
     sub: "正直に",
     options: [
       { icon:"🛡️", text:"自分を守る力", sub:"周りに振り回されがち", scores:{protect:3,action:1} },
-      { icon:"💎", text:"自分を信じる力", sub:"決断できない、迷う", scores:{action:3,intuition:1} },
+      { icon:"💎",image:'images/lapis-lazuli.jpg', text:"自分を信じる力", sub:"決断できない、迷う", scores:{action:3,intuition:1} },
       { icon:"🌊", text:"流れに身を任せる力", sub:"コントロールしようとしすぎる", scores:{heal:3,love:1} },
       { icon:"👁️", text:"本質を見抜く力", sub:"表面に惑わされやすい", scores:{intuition:3,protect:1} }
     ]
@@ -710,7 +714,7 @@ const questions = [
     title: "どんな「場所」に\n一番惹かれる？",
     sub: "魂が安らぐ場所",
     options: [
-      { icon:"🌌", text:"満天の星空の下", sub:"宇宙と繋がる感覚", scores:{intuition:3,transform:1} },
+      { icon:"🌌",image:'images/labradorite.jpg', text:"満天の星空の下", sub:"宇宙と繋がる感覚", scores:{intuition:3,transform:1} },
       { icon:"🌊", text:"静かな海辺", sub:"波の音に癒される", scores:{heal:3,love:1} },
       { icon:"⛰️", text:"山の頂上", sub:"達成感と見晴らし", scores:{action:3,wealth:1} },
       { icon:"🏛️", text:"古い神社や寺院", sub:"神聖なエネルギー", scores:{protect:3,intuition:1} }
@@ -720,7 +724,7 @@ const questions = [
     title: "最後に。\n星に願うとしたら？",
     sub: "一つだけ",
     options: [
-      { icon:"✨", text:"魂の使命を知りたい", sub:"自分が何のために生まれたか", scores:{intuition:3,transform:2} },
+      { icon:"✨",image:'images/rutilated-quartz.jpg', text:"魂の使命を知りたい", sub:"自分が何のために生まれたか", scores:{intuition:3,transform:2} },
       { icon:"💰", text:"豊かさの流れに乗りたい", sub:"お金とチャンスの循環", scores:{wealth:3,action:2} },
       { icon:"❤️", text:"深い愛と繋がりが欲しい", sub:"魂レベルのご縁", scores:{love:3,heal:2} },
       { icon:"🛡️", text:"ネガティブから守られたい", sub:"心の平穏を保ちたい", scores:{protect:3,heal:2} }
@@ -731,7 +735,7 @@ const questions = [
 // ======== Stones ========
 const stones = {
   intuition: {
-    name:"ラピスラズリ", nameEn:"LAPIS LAZULI", icon:"💎", rarity:8.3,
+    name:"ラピスラズリ", nameEn:"LAPIS LAZULI", icon:"💎",image:'images/lapis-lazuli.jpg', rarity:8.3,
     traits:["第三の目覚醒","真実を見抜く力","宇宙との対話","直感力強化"],
     chakra:"第6チャクラ（サードアイ）",
     compat:[{key:"heal",pct:94},{key:"transform",pct:88}],
@@ -739,7 +743,7 @@ const stones = {
     message:"あなたの星は、真実を見通す力を求めています。\n\nラピスラズリは古代エジプトでツタンカーメンの棺に使われ、クレオパトラがアイシャドウの原料としたとも伝わる「天空の石」。\n\n持つ者の第三の目を開き、嘘や表面的なものを見抜く力を授けます。最近、不思議な偶然が続いていませんか？\n\nそれはこの石があなたを呼んでいるサインです。"
   },
   love: {
-    name:"ラリマー", nameEn:"LARIMAR", icon:"🩵", rarity:4.2,
+    name:"ラリマー", nameEn:"LARIMAR", icon:"🩵",image:'images/larimar.jpg', rarity:4.2,
     traits:["魂の愛の覚醒","運命の人を引き寄せ","心の傷の浄化","カリブ海の奇跡"],
     chakra:"第4・第5チャクラ（ハート＆スロート）",
     compat:[{key:"heal",pct:96},{key:"intuition",pct:87}],
@@ -747,7 +751,7 @@ const stones = {
     message:"あなたの星は、深い愛と魂の繋がりを求めています。\n\nラリマーは世界でたった1箇所、カリブ海ドミニカ共和国の山奥でのみ採れる奇跡の石。三大ヒーリングストーンの一つです。\n\nこの石は持つ者の心を優しく開き、魂レベルのご縁を引き寄せます。まず起きるのは「自分を許せるようになる」変化。\n\n自分を愛せた瞬間、周りの世界が驚くほど変わります。"
   },
   wealth: {
-    name:"ルチルクォーツ", nameEn:"RUTILATED QUARTZ", icon:"✨", rarity:6.8,
+    name:"ルチルクォーツ", nameEn:"RUTILATED QUARTZ", icon:"✨",image:'images/rutilated-quartz.jpg', rarity:6.8,
     traits:["金運急上昇","事業成功","富の引き寄せ","経営者の石"],
     chakra:"第3チャクラ（ソーラープレクサス）",
     compat:[{key:"action",pct:93},{key:"transform",pct:85}],
@@ -755,7 +759,7 @@ const stones = {
     message:"あなたの星は、豊かさの流れに乗る準備ができています。\n\nルチルクォーツは透明な水晶の中に金色の針（ルチル）が入った石。古来「金運最強の石」として経営者や投資家に愛されてきました。\n\n金の針1本1本が、あなたに富と成功を引き寄せるアンテナとなります。\n\nあなたの星の配置は今まさに「金運の転換期」。この石が、その流れを加速させます。"
   },
   protect: {
-    name:"翡翠", nameEn:"JADEITE", icon:"🟢", rarity:7.1,
+    name:"翡翠", nameEn:"JADEITE", icon:"🟢",image:'images/jadeite.jpg', rarity:7.1,
     traits:["最強の守護力","日本の国石","五徳の石","魔除け・厄除け"],
     chakra:"第4チャクラ（ハート）",
     compat:[{key:"intuition",pct:91},{key:"action",pct:86}],
@@ -763,7 +767,7 @@ const stones = {
     message:"あなたの星は、強い守りと品格を必要としています。\n\n翡翠は日本の「国石」に認定された、東洋最高の守護石。中国では「金より価値がある」とされ、皇帝だけが身につけることを許された時代もありました。\n\n仁・義・礼・智・信の五徳を備えるこの石は、あなたをあらゆる邪気から守りながら、品格と人徳を高めます。\n\n最近、理由のない疲労感や、人混みでの消耗を感じていませんか？"
   },
   transform: {
-    name:"ラブラドライト", nameEn:"LABRADORITE", icon:"🌌", rarity:6.9,
+    name:"ラブラドライト", nameEn:"LABRADORITE", icon:"🌌",image:'images/labradorite.jpg', rarity:6.9,
     traits:["魂の変容","隠された可能性の覚醒","創造力の爆発","虹のオーラ"],
     chakra:"第6・第7チャクラ",
     compat:[{key:"intuition",pct:94},{key:"protect",pct:83}],
@@ -771,7 +775,7 @@ const stones = {
     message:"あなたの星は今、大きな変容の最中にあります。\n\nラブラドライトは一見地味な灰色の石。しかし光を当てた瞬間、虹色の閃光（ラブラドレッセンス）を放ちます。\n\nそれはまるで「あなたの中に隠された可能性」そのもの。まだ気づいていない才能や、新しい自分が目覚めようとしています。\n\nあなたの星の配置に、大きな転機が近づいています。"
   },
   action: {
-    name:"サンストーン", nameEn:"SUNSTONE", icon:"☀️", rarity:9.4,
+    name:"サンストーン", nameEn:"SUNSTONE", icon:"☀️",image:'images/sunstone.jpg', rarity:9.4,
     traits:["決断力強化","行動力覚醒","太陽のリーダーシップ","自信回復"],
     chakra:"第2・第3チャクラ",
     compat:[{key:"wealth",pct:92},{key:"protect",pct:87}],
@@ -779,7 +783,7 @@ const stones = {
     message:"あなたの星は、強い意志と行動力を求めています。\n\nサンストーンは「太陽の石」。古代ヴァイキングが大海原で方角を知るための羅針盤として使った伝説の石です。\n\n迷いを断ち切り、進むべき方向を照らす力を持つこの石は、あなたの中に眠るリーダーシップを呼び覚まします。\n\n「やるべきことはわかっている。あとは動くだけ」——その背中を、太陽の光が押してくれます。"
   },
   heal: {
-    name:"スギライト", nameEn:"SUGILITE", icon:"💜", rarity:3.7,
+    name:"スギライト", nameEn:"SUGILITE", icon:"💜",image:'images/sugilite.jpg', rarity:3.7,
     traits:["深い癒し","魂の浄化","三大ヒーリング","日本人が発見した奇跡の石"],
     chakra:"第7チャクラ（クラウン）",
     compat:[{key:"love",pct:95},{key:"intuition",pct:89}],
@@ -1000,7 +1004,7 @@ function showResult() {
 
   // Teaser
   document.getElementById('result-teaser').innerHTML = `
-    <div class="result-stone-icon">${stone.icon}</div>
+    <img class="stone-photo" src="${stone.image}" alt="${stone.name}" onerror="this.style.display='none'"><div class="result-stone-icon" style="font-size:32px">${stone.icon}</div>
     <div class="result-zodiac-badge">${userZodiac.icon} ${userZodiac.name} × パワーストーン</div>
     <div class="result-label">${displayName}の星が導く</div>
     <div class="result-name">開運ブレスレット</div>
@@ -1024,14 +1028,14 @@ function showResult() {
   // Support stone details
   document.getElementById('support-stones-detail').innerHTML = `
     <div class="support-detail">
-      <div class="sd-icon">${support1.icon}</div>
+      <div class="sd-icon"><img class="stone-photo-small" src="${support1.image}" alt="${support1.name}" onerror="this.style.display='none';this.nextSibling.style.display='inline'" style="margin-right:4px"><span>${support1.icon}</span></div>
       <div class="sd-info">
         <div><span class="sd-name">サポート石①: ${support1.name}</span><span class="sd-pct">${support1Pct}%</span></div>
         <div class="sd-trait">「${support1.traits[0]}」</div>
       </div>
     </div>
     <div class="support-detail">
-      <div class="sd-icon">${support2.icon}</div>
+      <div class="sd-icon"><img class="stone-photo-small" src="${support2.image}" alt="${support2.name}" onerror="this.style.display='none';this.nextSibling.style.display='inline'" style="margin-right:4px"><span>${support2.icon}</span></div>
       <div class="sd-info">
         <div><span class="sd-name">サポート石②: ${support2.name}</span><span class="sd-pct">${support2Pct}%</span></div>
         <div class="sd-trait">「${support2.traits[0]}」</div>
@@ -1044,9 +1048,9 @@ function showResult() {
     <h3>💎 ${displayName}の開運ブレスレット構成</h3>
     <div class="bracelet-sub">3石の最強構成</div>
     <div class="bracelet-stones-row">
-      <div class="bracelet-stone-item support"><div class="bs-icon">${support1.icon}</div><div class="bs-name">${support1.name}</div><div class="bs-role">SUPPORT</div></div>
-      <div class="bracelet-stone-item main"><div class="bs-icon">${stone.icon}</div><div class="bs-name">${stone.name}</div><div class="bs-role">MAIN</div></div>
-      <div class="bracelet-stone-item support"><div class="bs-icon">${support2.icon}</div><div class="bs-name">${support2.name}</div><div class="bs-role">SUPPORT</div></div>
+      <div class="bracelet-stone-item support"><img class="stone-photo-small" src="${support1.image}" onerror="this.style.display='none'"><div class="bs-icon">${support1.icon}</div><div class="bs-name">${support1.name}</div><div class="bs-role">SUPPORT</div></div>
+      <div class="bracelet-stone-item main"><img class="stone-photo-small" src="${stone.image}" onerror="this.style.display='none'"><div class="bs-icon">${stone.icon}</div><div class="bs-name">${stone.name}</div><div class="bs-role">MAIN</div></div>
+      <div class="bracelet-stone-item support"><img class="stone-photo-small" src="${support2.image}" onerror="this.style.display='none'"><div class="bs-icon">${support2.icon}</div><div class="bs-name">${support2.name}</div><div class="bs-role">SUPPORT</div></div>
     </div>
     <div class="bracelet-msg">「この3石の組み合わせは${displayName}専用の最強構成です」</div>
   `;
