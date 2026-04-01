@@ -457,7 +457,7 @@
 
 <script>
 const LINE_URL = 'https://line.me/R/ti/p/YOUR_LINE_ID'; // TODO: LINE公式URL
-const API_BASE = 'https://YOUR-TUNNEL.trycloudflare.com'; // 本番: Cloudflare Tunnel / テスト: http://localhost:3900
+const API_BASE = 'https://motels-intimate-css-elephant.trycloudflare.com'; // Cloudflare Tunnel → ishiya-line-engine
 const PROJECT_SLUG = 'ishiya';
 const DIAGNOSIS_TYPE = 'zodiac';
 
@@ -552,7 +552,7 @@ function playSparkle() {
 
 // ======== Toast Notifications ========
 const toastCities = ['東京','大阪','名古屋','福岡','札幌','横浜','神戸','京都','仙台','広島'];
-const toastStones = ['ラピスラズリ','ローズクォーツ','シトリン','オブシディアン','ラブラドライト','タイガーアイ','アメジスト'];
+const toastStones = ['ルチルクォーツ','ラリマー','スーパーセブン'];
 
 function showToast() {
   const el = document.getElementById('toast-notification');
@@ -1004,7 +1004,7 @@ function showResult() {
 
   // Teaser
   document.getElementById('result-teaser').innerHTML = `
-    <img class="stone-photo" src="${stone.image}" alt="${stone.name}" onerror="this.style.display='none'"><div class="result-stone-icon" style="font-size:32px">${stone.icon}</div>
+    <img class="stone-photo" src="${stone.image}" alt="${stone.name}" onerror="this.style.display='none';this.nextElementSibling.style.fontSize='80px'"><div class="result-stone-icon" style="font-size:32px">${stone.icon}</div>
     <div class="result-zodiac-badge">${userZodiac.icon} ${userZodiac.name} × パワーストーン</div>
     <div class="result-label">${displayName}の星が導く</div>
     <div class="result-name">開運ブレスレット</div>
